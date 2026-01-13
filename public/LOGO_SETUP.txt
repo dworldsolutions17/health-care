@@ -1,0 +1,17 @@
+LOGO SETUP INSTRUCTIONS
+========================
+
+Please save the logo image you provided as:
+  public/logo.png
+
+The logo has already been integrated into:
+✅ Header component
+✅ HTML favicon
+✅ All branding updated to "The Health Orbit"
+
+After saving the logo as "public/logo.png", run:
+  npm run build
+
+The logo will automatically appear throughout the site.
+
+Note: The logo should be saved in PNG format for best quality and transparency support.

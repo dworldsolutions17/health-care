@@ -169,7 +169,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="text-white/90">info@healthcare.com<br />support@healthcare.com</p>
+                    <p className="text-white/90">info@thehealthorbit.com<br />support@thehealthorbit.com</p>
                   </div>
                 </div>
 

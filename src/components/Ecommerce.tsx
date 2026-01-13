@@ -1,7 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
 
 const Ecommerce = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const navigate = useNavigate();
 
   const products = [
     {
@@ -89,6 +99,36 @@ const Ecommerce = () => {
   const filteredProducts = selectedCategory === 'all' 
     ? products 
     : products.filter(p => p.category === selectedCategory);
+
+  const addToCart = (product: typeof products[0]) => {
+    // Get existing cart from localStorage
+    const savedCart = localStorage.getItem('cart');
+    const cart = savedCart ? JSON.parse(savedCart) : [];
+    
+    // Check if product already exists in cart
+    const existingItemIndex = cart.findIndex((item: CartItem) => item.id === product.id);
+    
+    if (existingItemIndex >= 0) {
+      // Increase quantity
+      cart[existingItemIndex].quantity += 1;
+    } else {
+      // Add new item
+      cart.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1
+      });
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Show success message and navigate
+    alert(`${product.name} added to cart!`);
+    navigate('/checkout');
+  };
 
   return (
     <section id="ecommerce" className="py-20 bg-gradient-to-br from-gray-50 to-white">
@@ -188,6 +228,7 @@ const Ecommerce = () => {
                   </div>
                   <button 
                     disabled={!product.inStock}
+                    onClick={() => product.inStock && addToCart(product)}
                     className={`px-4 py-2 rounded-lg font-semibold transition ${
                       product.inStock
                         ? 'bg-primary-600 text-white hover:bg-primary-700'

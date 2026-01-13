@@ -1,21 +1,28 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
 
   const scrollToSection = (sectionId: string) => {
     if (!isHomePage) {
-      window.location.href = `/#${sectionId}`;
-      return;
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
+    setIsMenuOpen(false);
   };
 
   return (
@@ -24,15 +31,11 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo & Brand */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-800">HealthCare</h1>
-              <p className="text-xs text-gray-600">Excellence in Care</p>
-            </div>
+            <img src="/images/logo.png" alt="The Health Orbit" className="h-16 w-auto" />
+            {/* <div>
+              <h1 className="text-2xl font-bold text-gray-800">The Health <span className="text-secondary-500">Orbit</span></h1>
+              <p className="text-xs text-gray-600">A Lifetime Global Ecosystem</p>
+            </div> */}
           </Link>
 
           {/* Desktop Navigation */}

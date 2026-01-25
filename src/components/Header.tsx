@@ -44,19 +44,19 @@ const Header = () => {
               About Us
             </button>
             <Link to="/services" className="text-gray-700 hover:text-primary-600 transition">
-              Services
+              Our Services
             </Link>
-            <Link to="/doctors" className="text-gray-700 hover:text-primary-600 transition">
-              Doctors
+            <Link to="/health-plans" className="text-gray-700 hover:text-primary-600 transition">
+              Health Plans
             </Link>
-            <Link to="/ecommerce" className="text-gray-700 hover:text-primary-600 transition">
-              E-commerce
+            <Link to="/telemedicine" className="text-gray-700 hover:text-primary-600 transition">
+              Telemedicine
             </Link>
             <button onClick={() => scrollToSection('contact')} className="text-gray-700 hover:text-primary-600 transition">
               Contact
             </button>
-            <Link to="/doctors" className="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition">
-              Join Our Network
+            <Link to="/ai-assessment" className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition font-semibold">
+              AI Health Assessment
             </Link>
           </div>
 
@@ -82,19 +82,19 @@ const Header = () => {
               About Us
             </button>
             <Link to="/services" onClick={() => setIsMenuOpen(false)} className="block w-full text-left text-gray-700 hover:text-primary-600 py-2">
-              Services
+              Our Services
             </Link>
-            <Link to="/doctors" onClick={() => setIsMenuOpen(false)} className="block w-full text-left text-gray-700 hover:text-primary-600 py-2">
-              Doctors
+            <Link to="/health-plans" onClick={() => setIsMenuOpen(false)} className="block w-full text-left text-gray-700 hover:text-primary-600 py-2">
+              Health Plans
             </Link>
-            <Link to="/ecommerce" onClick={() => setIsMenuOpen(false)} className="block w-full text-left text-gray-700 hover:text-primary-600 py-2">
-              E-commerce
+            <Link to="/telemedicine" onClick={() => setIsMenuOpen(false)} className="block w-full text-left text-gray-700 hover:text-primary-600 py-2">
+              Telemedicine
             </Link>
             <button onClick={() => scrollToSection('contact')} className="block w-full text-left text-gray-700 hover:text-primary-600 py-2">
               Contact
             </button>
-            <Link to="/doctors" onClick={() => setIsMenuOpen(false)} className="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition block text-center">
-              Join Our Network
+            <Link to="/ai-assessment" onClick={() => setIsMenuOpen(false)} className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition block text-center font-semibold">
+              AI Health Assessment
             </Link>
           </div>
         )}

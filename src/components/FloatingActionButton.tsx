@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
 const FloatingActionButton = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen] = useState(false);
 
   const actions = [
     {
@@ -112,13 +112,12 @@ const FloatingActionButton = () => {
       </AnimatePresence>
 
       {/* Main FAB Button */}
-      <motion.button
+      {/* <motion.button
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         className="relative w-16 h-16 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-full shadow-2xl flex items-center justify-center text-white overflow-hidden group"
       >
-        {/* Animated Background */}
         <motion.div
           className="absolute inset-0 bg-gradient-to-br from-secondary-600 to-primary-600"
           animate={{
@@ -127,7 +126,6 @@ const FloatingActionButton = () => {
           transition={{ duration: 0.3 }}
         />
         
-        {/* Icon */}
         <motion.div
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.3 }}
@@ -138,7 +136,6 @@ const FloatingActionButton = () => {
           </svg>
         </motion.div>
 
-        {/* Continuous Pulse */}
         <motion.div
           className="absolute inset-0 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-full"
           animate={{
@@ -152,17 +149,15 @@ const FloatingActionButton = () => {
           }}
         />
         
-        {/* Hover Ring */}
         <motion.div
           className="absolute inset-0 border-4 border-white/30 rounded-full"
           initial={{ scale: 0.8, opacity: 0 }}
           whileHover={{ scale: 1.2, opacity: 1 }}
           transition={{ duration: 0.3 }}
         />
-      </motion.button>
+      </motion.button> */}
 
-      {/* Badge Notification */}
-      <motion.div
+      {/* <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg"
@@ -173,7 +168,7 @@ const FloatingActionButton = () => {
         >
           4
         </motion.span>
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 };

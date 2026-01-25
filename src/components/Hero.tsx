@@ -139,36 +139,22 @@ const Hero = () => {
               transition={{ delay: 0.3 }}
               className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight"
             >
-              Transforming Healthcare with{' '}
+              Transforming Healthcare{' '}
               <motion.span
                 className="relative inline-block"
                 whileHover={{ scale: 1.05 }}
               >
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 bg-[length:200%_auto] animate-gradient">
-                  Compassion
+                  Access & Wellness
                 </span>
                 <motion.div
-                  className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-full"
+                  className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-full"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ delay: 0.8, duration: 0.5 }}
                 />
               </motion.span>{' '}
-              and{' '}
-              <motion.span
-                className="relative inline-block"
-                whileHover={{ scale: 1.05 }}
-              >
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-600 via-primary-500 to-secondary-600 bg-[length:200%_auto] animate-gradient">
-                  Innovation
-                </span>
-                <motion.div
-                  className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-secondary-600 to-primary-600 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                />
-              </motion.span>
+              in Pakistan
             </motion.h1>
             
             <motion.p
@@ -177,7 +163,7 @@ const Hero = () => {
               transition={{ delay: 0.5 }}
               className="text-xl text-gray-600 leading-relaxed"
             >
-              Your trusted partner in accessible, high-quality healthcare. We combine cutting-edge medical excellence with compassionate care to serve communities across Pakistan and beyond.
+              Health Plans • Telemedicine • Preventive Care • AI Health Assessment
             </motion.p>
 
             <motion.div
@@ -189,7 +175,7 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(9, 109, 217, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('about')}
+                onClick={() => window.location.href = '/ai-assessment'}
                 className="relative group bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-8 py-4 rounded-full font-semibold overflow-hidden"
               >
                 <motion.span
@@ -199,7 +185,7 @@ const Hero = () => {
                   transition={{ duration: 0.3 }}
                 />
                 <span className="relative z-10 flex items-center gap-2">
-                  Learn More
+                  Get Your AI Health Assessment
                   <motion.svg
                     className="w-5 h-5"
                     fill="none"
@@ -216,7 +202,7 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(9, 109, 217, 0.2)" }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('doctors')}
+                onClick={() => scrollToSection('contact')}
                 className="relative group bg-white text-primary-600 px-8 py-4 rounded-full font-semibold border-2 border-primary-600 overflow-hidden"
               >
                 <motion.span
@@ -226,7 +212,7 @@ const Hero = () => {
                   transition={{ duration: 0.3 }}
                 />
                 <span className="relative z-10 group-hover:text-white transition-colors">
-                  Join Our Network
+                  Talk to a Health Partner
                 </span>
               </motion.button>
             </motion.div>
@@ -399,26 +385,6 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-primary-600 rounded-full flex justify-center p-2"
-        >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1 h-2 bg-primary-600 rounded-full"
-          />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };

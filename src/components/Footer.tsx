@@ -159,6 +159,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm text-center md:text-left">
               <p>&copy; {new Date().getFullYear()} The Health Orbit. All rights reserved.</p>
+              <p className="text-xs mt-1">Powered by <a href="https://dworldsolutions.com" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-primary-300 transition">D-World Solutions</a></p>
             </div>
             <div className="flex space-x-6 text-sm">
               <Link to="/" className="text-gray-400 hover:text-white transition">Privacy Policy</Link>

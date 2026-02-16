@@ -1,7 +1,9 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import FloatingActionButton from '../components/FloatingActionButton';
-import AIChatbot from '../components/AIChatbot';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import FloatingActionButton from "../components/FloatingActionButton";
+import ScrollToTop from "../components/ScrollToTop";
+import OfferRibbon from "../components/OfferRibbon";
+import CookieConsent from "../components/CookieConsent";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,13 +12,15 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen bg-soft-bg">
+      <ScrollToTop />
       <Header />
-      <main>
+      <main >
+        <OfferRibbon />
         {children}
       </main>
       <Footer />
       <FloatingActionButton />
-      <AIChatbot />
+      <CookieConsent />
     </div>
   );
 };

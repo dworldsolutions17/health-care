@@ -4,23 +4,23 @@ const PreventiveCarePage = () => {
   const benefits = [
     {
       icon: '🔍',
-      title: 'Early Detection',
-      description: 'Catch health issues before they become serious',
+      title: 'Prevention beats cure',
+      description: 'Catch health risks before they become emergencies',
     },
     {
       icon: '💰',
-      title: 'Cost Savings',
-      description: 'Prevention is more affordable than treatment',
+      title: 'Saves money',
+      description: 'A screening costs thousands. Treatment costs lakhs.',
     },
     {
       icon: '💪',
-      title: 'Better Quality of Life',
-      description: 'Stay healthy and active longer',
+      title: 'Reduces anxiety',
+      description: 'Know your health status. Plan accordingly.',
     },
     {
       icon: '📊',
-      title: 'Track Your Health',
-      description: 'Monitor trends and make informed decisions',
+      title: 'Creates habits',
+      description: 'Regular monitoring builds long-term health discipline',
     },
   ];
 
@@ -61,13 +61,10 @@ const PreventiveCarePage = () => {
           className="text-center mb-16"
         >
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Preventive{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">
-              Healthcare
-            </span>
+            Prevent Before You Pay
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Your health is your wealth. Invest in preventive care today for a healthier tomorrow.
+            Why wait for symptoms when you can prevent disease, avoid emergencies, and save money?
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -81,7 +78,7 @@ const PreventiveCarePage = () => {
         {/* Why It Matters */}
         <div className="mb-16">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
-            Why Preventive Care Matters
+            Why Prevention is the Smartest Healthcare Investment
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (

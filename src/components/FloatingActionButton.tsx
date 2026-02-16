@@ -1,10 +1,22 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import ChatSupportModal from './ChatSupportModal';
 
 const FloatingActionButton = () => {
-  const [isOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const actions = [
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+        </svg>
+      ),
+      label: 'AI Health Assessment',
+      color: 'from-purple-500 to-indigo-500',
+      action: () => window.location.href = '/ai-assessment',
+    },
     {
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -13,7 +25,10 @@ const FloatingActionButton = () => {
       ),
       label: 'Chat Support',
       color: 'from-blue-500 to-cyan-500',
-      action: () => console.log('Chat clicked'),
+      action: () => {
+        setIsOpen(false);
+        setIsChatOpen(true);
+      },
     },
     {
       icon: (
@@ -23,7 +38,7 @@ const FloatingActionButton = () => {
       ),
       label: 'Call Us',
       color: 'from-green-500 to-emerald-500',
-      action: () => console.log('Call clicked'),
+      action: () => window.location.href = 'tel:+922112345678',
     },
     {
       icon: (
@@ -32,8 +47,13 @@ const FloatingActionButton = () => {
         </svg>
       ),
       label: 'Book Appointment',
-      color: 'from-purple-500 to-pink-500',
-      action: () => console.log('Appointment clicked'),
+      color: 'from-pink-500 to-rose-500',
+      action: () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      },
     },
     {
       icon: (
@@ -43,7 +63,7 @@ const FloatingActionButton = () => {
       ),
       label: 'Emergency',
       color: 'from-red-500 to-orange-500',
-      action: () => console.log('Emergency clicked'),
+      action: () => window.location.href = 'tel:1122',
     },
   ];
 
@@ -112,7 +132,7 @@ const FloatingActionButton = () => {
       </AnimatePresence>
 
       {/* Main FAB Button */}
-      {/* <motion.button
+      <motion.button
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -131,9 +151,15 @@ const FloatingActionButton = () => {
           transition={{ duration: 0.3 }}
           className="relative z-10"
         >
-          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-          </svg>
+          {isOpen ? (
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          )}
         </motion.div>
 
         <motion.div
@@ -155,20 +181,10 @@ const FloatingActionButton = () => {
           whileHover={{ scale: 1.2, opacity: 1 }}
           transition={{ duration: 0.3 }}
         />
-      </motion.button> */}
+      </motion.button>
 
-      {/* <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg"
-      >
-        <motion.span
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 1, repeat: Infinity }}
-        >
-          4
-        </motion.span>
-      </motion.div> */}
+      {/* Chat Support Modal */}
+      <ChatSupportModal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </div>
   );
 };

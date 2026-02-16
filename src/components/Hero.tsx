@@ -42,7 +42,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 pt-24 pb-20 overflow-hidden min-h-screen flex items-center">
+    <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 pb-20 overflow-hidden min-h-screen flex items-center">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Gradient Orbs with Parallax */}
@@ -139,13 +139,13 @@ const Hero = () => {
               transition={{ delay: 0.3 }}
               className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight"
             >
-              Transforming Healthcare{' '}
+              A Smarter Way to{' '}
               <motion.span
                 className="relative inline-block"
                 whileHover={{ scale: 1.05 }}
               >
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 bg-[length:200%_auto] animate-gradient">
-                  Access & Wellness
+                  Experience Healthcare
                 </span>
                 <motion.div
                   className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-full"
@@ -153,8 +153,7 @@ const Hero = () => {
                   animate={{ scaleX: 1 }}
                   transition={{ delay: 0.8, duration: 0.5 }}
                 />
-              </motion.span>{' '}
-              in Pakistan
+              </motion.span>
             </motion.h1>
             
             <motion.p
@@ -163,7 +162,16 @@ const Hero = () => {
               transition={{ delay: 0.5 }}
               className="text-xl text-gray-600 leading-relaxed"
             >
-              Health Plans • Telemedicine • Preventive Care • AI Health Assessment
+              Preventive Care • Healthcare Marketing • Health Plans • Telemedicine • AI Health Assessment • Ramadan Wellness Screening
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-base text-gray-500"
+            >
+              Powered by trusted partners across Pakistan.
             </motion.p>
 
             <motion.div
@@ -185,7 +193,7 @@ const Hero = () => {
                   transition={{ duration: 0.3 }}
                 />
                 <span className="relative z-10 flex items-center gap-2">
-                  Get Your AI Health Assessment
+                  Start AI Health Assessment
                   <motion.svg
                     className="w-5 h-5"
                     fill="none"
@@ -202,7 +210,7 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(9, 109, 217, 0.2)" }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('contact')}
+                onClick={() => window.location.href = '/telemedicine'}
                 className="relative group bg-white text-primary-600 px-8 py-4 rounded-full font-semibold border-2 border-primary-600 overflow-hidden"
               >
                 <motion.span
@@ -212,7 +220,7 @@ const Hero = () => {
                   transition={{ duration: 0.3 }}
                 />
                 <span className="relative z-10 group-hover:text-white transition-colors">
-                  Talk to a Health Partner
+                  Book Telemedicine Consultation
                 </span>
               </motion.button>
             </motion.div>

@@ -23,10 +23,10 @@ const AIHighlight = () => {
                   AI-Powered
                 </div>
                 <h2 className="font-heading text-3xl md:text-4xl text-dark-text">
-                  AI Health Assessment
+                  Know Your Health Before Symptoms Show
                 </h2>
                 <p className="text-gray-600 text-lg">
-                  Get a personalized health report in minutes
+                  Get a personalized health risk score in 3 minutes
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2 text-gray-700">

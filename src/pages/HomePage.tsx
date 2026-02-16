@@ -6,10 +6,12 @@ import AIHighlight from '../components/AIHighlight';
 import About from '../components/About';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import RamadanModal from '../components/RamadanModal';
 
 const HomePage = () => {
   return (
     <>
+      <RamadanModal />
       <Hero />
       <TrustSignal />
       <WhatWeDo />

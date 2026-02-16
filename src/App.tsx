@@ -8,6 +8,8 @@ import PreventiveCarePage from './pages/PreventiveCarePage'
 import TelemedicinePage from './pages/TelemedicinePage'
 import AIAssessmentPage from './pages/AIAssessmentPage'
 import JoinNetworkPage from './pages/JoinNetworkPage'
+import RamadanWellnessPage from './pages/RamadanWellnessPage'
+import HealthcareMarketingPage from './pages/HealthcareMarketingPage'
 import EcommercePage from './pages/EcommercePage'
 import CheckoutPage from './pages/CheckoutPage'
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="/telemedicine" element={<TelemedicinePage />} />
           <Route path="/ai-assessment" element={<AIAssessmentPage />} />
           <Route path="/join-network" element={<JoinNetworkPage />} />
+          <Route path="/ramadan-wellness" element={<RamadanWellnessPage />} />
+          <Route path="/healthcare-marketing" element={<HealthcareMarketingPage />} />
           <Route path="/ecommerce" element={<EcommercePage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
         </Routes>

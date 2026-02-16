@@ -47,7 +47,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                <img src="/images/logo_without_text.png" alt="The Health Orbit" className="w-8 h-8 text-white" />
+                <img src="/images/logo_without_text" alt="The Health Orbit" className="w-8 h-8 text-white" />
               </div>
               <div>
                 <h3 className="text-xl font-bold">The Health <span className="text-secondary-500">Orbit</span></h3>
@@ -55,7 +55,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6">
-              Transforming healthcare with compassion and innovation. Providing accessible, high-quality care for everyone.
+              An integrated healthcare ecosystem connecting prevention, care, and wellness under one trusted platform.
             </p>
             <div className="flex space-x-4">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary-600 transition">

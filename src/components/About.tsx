@@ -45,13 +45,16 @@ const About = () => {
               <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h3>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p className="text-lg">
-                  Founded on the principles of quality care and community service, our organization has grown from a small clinic to become a beacon of hope and health for thousands.
+                  The Health Orbit was born from frustration with Pakistan's broken healthcare system.
                 </p>
                 <p className="text-lg">
-                  Our journey began with a simple belief: that exceptional healthcare should be available to everyone, regardless of their background or circumstances.
+                  We saw families pay lakhs for diseases that could have been prevented for thousands. We saw patients confused by too many options and no guidance. We saw medical professionals working in isolation instead of collaboration.
                 </p>
                 <p className="text-lg">
-                  Today, we continue to innovate and expand our services, staying true to our core values while embracing new technologies and medical advances that improve patient outcomes.
+                  We realized Pakistan doesn't need more hospitals. It needs better systems, better connections, and better priorities.
+                </p>
+                <p className="text-lg">
+                  So we built The Health Orbit — not as another clinic or doctor directory, but as an integrated healthcare ecosystem that puts prevention first, uses technology intelligently, and ensures ethical care for all.
                 </p>
               </div>
 

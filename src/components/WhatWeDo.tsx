@@ -10,7 +10,7 @@ const WhatWeDo = () => {
         </svg>
       ),
       title: 'Health Plans',
-      description: 'Affordable and comprehensive health plans tailored for individuals, families, and organizations.',
+      description: 'Affordable access to quality healthcare for individuals, families, and organizations.',
       link: '/health-plans',
       gradient: 'from-blue-500 to-cyan-500',
     },
@@ -21,7 +21,7 @@ const WhatWeDo = () => {
         </svg>
       ),
       title: 'Preventive Healthcare',
-      description: 'Early screenings, health checkups, and preventive care to keep you healthy and detect issues early.',
+      description: 'Detect risks early and stay ahead of disease with proactive screening.',
       link: '/preventive-care',
       gradient: 'from-green-500 to-emerald-500',
     },
@@ -32,9 +32,20 @@ const WhatWeDo = () => {
         </svg>
       ),
       title: 'Telemedicine',
-      description: 'Connect with certified doctors from anywhere, anytime. Quality healthcare at your fingertips.',
+      description: 'Consult qualified doctors anytime, from anywhere.',
       link: '/telemedicine',
       gradient: 'from-purple-500 to-pink-500',
+    },
+    {
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      ),
+      title: 'Healthcare Marketing',
+      description: 'We help hospitals and institutions grow through trust-based systems and measurable outcomes.',
+      link: '/healthcare-marketing',
+      gradient: 'from-indigo-500 to-blue-600',
     },
     {
       icon: (
@@ -43,9 +54,20 @@ const WhatWeDo = () => {
         </svg>
       ),
       title: 'Health Partners Network',
-      description: 'Access to a wide network of hospitals, clinics, labs, and pharmacies across Pakistan.',
+      description: 'Verified doctors, clinics, labs, and pharmacies working together.',
       link: '/join-network',
       gradient: 'from-orange-500 to-red-500',
+    },
+    {
+      icon: (
+        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      ),
+      title: 'Ramadan Wellness Screening',
+      description: 'Fast with confidence this Ramadan. Detect hidden risks, adjust safely, and protect your family.',
+      link: '/ramadan-wellness',
+      gradient: 'from-green-600 to-teal-600',
     },
   ];
 
@@ -59,14 +81,14 @@ const WhatWeDo = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            What We Do
+            Everything You Need in One Healthcare Ecosystem
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Comprehensive healthcare solutions designed to make quality care accessible to everyone
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {pillars.map((pillar, index) => (
             <motion.div
               key={pillar.title}

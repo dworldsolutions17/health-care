@@ -4,22 +4,22 @@ const WhyHealthOrbit = () => {
   const reasons = [
     {
       icon: '🛡️',
-      title: 'Prevent before it becomes expensive',
+      title: 'Prevent before treatment becomes expensive',
       description: 'Early detection saves lives and costs',
     },
     {
       icon: '💚',
-      title: 'Affordable & ethical healthcare',
+      title: 'Ethical and affordable healthcare access',
       description: 'Quality care accessible to everyone',
     },
     {
       icon: '🤖',
-      title: 'AI-powered health insights',
+      title: 'AI-supported decision tools',
       description: 'Smart technology for better decisions',
     },
     {
       icon: '✅',
-      title: 'Verified health partners',
+      title: 'Verified medical partners',
       description: 'Only certified and trusted professionals',
     },
   ];
@@ -34,7 +34,7 @@ const WhyHealthOrbit = () => {
           className="text-center mb-12"
         >
           <h2 className="font-heading text-h2 text-dark-text mb-4">
-            Why The Health Orbit?
+            Healthcare Built on Trust, Technology & Prevention
           </h2>
           <p className="text-body text-gray-600 max-w-2xl mx-auto">
             We're changing how Pakistan thinks about healthcare

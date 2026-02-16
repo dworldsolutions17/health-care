@@ -9,6 +9,9 @@ Your website will automatically save the following data to Google Sheets:
 1. **Contact Form Submissions** → "Contact Forms" sheet
 2. **AI Health Assessment Results** → "AI Assessments" sheet
 3. **Join Network Applications** → "Network Applications" sheet
+4. **Guest User Tracking** → "Guest User Tracking" sheet (automatically tracks visitors who accept cookies)
+5. **Preventive Checkup Bookings** → "Preventive Checkups" sheet
+6. **Telemedicine Bookings** → "Telemedicine Bookings" sheet
 
 ---
 
@@ -83,6 +86,19 @@ function doPost(e) {
           sheet.appendRow(['Timestamp', 'Name', 'Partner Type', 'Email', 'Phone', 'City', 'Description']);
         }
         row = [data.timestamp, data.name, data.partnerType, data.email, data.phone, data.city, data.description];
+        break;
+        
+      case 'guest-user-tracking':
+        sheet = ss.getSheetByName('Guest User Tracking') || ss.insertSheet('Guest User Tracking');
+        if (sheet.getLastRow() === 0) {
+          sheet.appendRow(['Timestamp', 'Email', 'Phone', 'Source', 'First Visit', 'Last Visit', 'Page Views', 'User Agent', 'Referrer', 'Current Page']);
+          // Format header row
+          var headerRange = sheet.getRange(1, 1, 1, 10);
+          headerRange.setFontWeight('bold');
+          headerRange.setBackground('#9C27B0');
+          headerRange.setFontColor('#FFFFFF');
+        }
+        row = [data.timestamp, data.email, data.phone, data.source, data.firstVisit, data.lastVisit, data.pageViews, data.userAgent, data.referrer, data.currentPage];
         break;
         
       default:
@@ -193,6 +209,18 @@ After the first submissions, your Google Sheet will automatically create these s
 | Timestamp | Name | Partner Type | Email | Phone | City | Description |
 |-----------|------|--------------|-------|-------|------|-------------|
 
+### 4. Guest User Tracking
+| Timestamp | Email | Phone | Source | First Visit | Last Visit | Page Views | User Agent | Referrer | Current Page |
+|-----------|-------|-------|--------|-------------|------------|------------|------------|----------|--------------|
+
+### 5. Preventive Checkups
+| Timestamp | Name | Email | Phone | Preferred Date |
+|-----------|------|-------|-------|----------------|
+
+### 6. Telemedicine Bookings
+| Timestamp | Name | Email | Phone | Specialty | Preferred Time |
+|-----------|------|-------|-------|-----------|----------------|
+
 ---
 
 ## 🔒 Privacy & Security
@@ -218,6 +246,28 @@ After the first submissions, your Google Sheet will automatically create these s
 ### Issue 3: "Script Not Found"
 **Solution**: Redeploy the Apps Script as a new version:
 - Apps Script → Deploy → Manage deployments → New version
+
+---
+
+## 🔄 Updating the Apps Script (After Code Changes)
+
+**⚠️ IMPORTANT**: If you update the Apps Script code (like adding the guest-user-tracking feature), you MUST redeploy:
+
+### Option 1: New Deployment (Recommended)
+1. In Apps Script, click **Deploy** → **New deployment**
+2. Choose **Web app**
+3. Configure settings (same as before)
+4. Click **Deploy**
+5. **Copy the new URL** and update `src/utils/googleSheets.ts`
+
+### Option 2: Update Existing Deployment
+1. In Apps Script, click **Deploy** → **Manage deployments**
+2. Click the ✏️ **Edit** icon (pencil) next to your deployment
+3. Click **Version** → **New version**
+4. Click **Deploy**
+5. The URL stays the same - no need to update your code!
+
+**💡 Tip**: Option 2 is faster if you already have the URL configured in your website.
 
 ---
 

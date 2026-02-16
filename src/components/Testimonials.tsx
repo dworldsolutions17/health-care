@@ -56,33 +56,33 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+    <section className="py-12 md:py-20 bg-white">
+      <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Success Stories
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Hear from our patients and healthcare professionals
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-600 to-secondary-600 mx-auto mt-6"></div>
         </div>
 
         {/* Patient Testimonials */}
-        <div className="mb-20">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Patient Testimonials</h3>
-          <div className="grid md:grid-cols-3 gap-8">
+        <div className="mb-12 md:mb-20">
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">Patient Testimonials</h3>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {patientTestimonials.map((testimonial, index) => (
               <div 
                 key={index}
-                className="bg-gradient-to-br from-primary-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2"
+                className="bg-gradient-to-br from-primary-50 to-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2"
               >
-                <div className="flex items-center mb-6">
+                <div className="flex items-center mb-4 md:mb-6">
                   <img 
                     src={testimonial.image} 
                     alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover mr-4"
+                    className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover mr-3 md:mr-4"
                   />
                   <div>
                     <h4 className="font-bold text-gray-900">{testimonial.name}</h4>

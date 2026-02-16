@@ -52,7 +52,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section id="contact" className="py-12 md:py-20 bg-gradient-to-br from-gray-50 to-white">
       {/* Success Toast Notification */}
       <AnimatePresence>
         {showSuccess && (
@@ -81,13 +81,13 @@ const Contact = () => {
         )}
       </AnimatePresence>
 
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Get In Touch
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Have questions or want to learn more? We're here to help
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-600 to-secondary-600 mx-auto mt-6"></div>
@@ -96,8 +96,8 @@ const Contact = () => {
         {/* Contact Form and Information - Side by Side */}
         <div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
           {/* Contact Form */}
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl h-full">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+          <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 shadow-xl h-full">
+            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Send Us a Message</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -183,20 +183,20 @@ const Contact = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="bg-gradient-to-br from-primary-600 to-secondary-600 rounded-3xl p-8 text-white h-full">
-            <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+          <div className="bg-gradient-to-br from-primary-600 to-secondary-600 rounded-2xl md:rounded-3xl p-6 md:p-8 text-white h-full">
+            <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">Contact Information</h3>
             
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center shrink-0">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="space-y-4 md:space-y-6">
+              <div className="flex items-start space-x-3 md:space-x-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-lg flex items-center justify-center shrink-0">
+                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-1">Address</h4>
-                  <p className="text-white/90">123 Healthcare Avenue, Medical District<br />Karachi, Pakistan</p>
+                  <h4 className="font-semibold mb-1 text-sm md:text-base">Address</h4>
+                  <p className="text-white/90 text-sm md:text-base">123 Healthcare Avenue, Medical District<br />Karachi, Pakistan</p>
                 </div>
               </div>
 
@@ -240,11 +240,11 @@ const Contact = () => {
         </div>
 
         {/* Social Media - Full Width */}
-        <div className="bg-white rounded-3xl p-8 shadow-xl mb-12">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Follow Us</h3>
-          <div className="flex justify-center gap-6">
-            <a href="#" className="w-14 h-14 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition">
-              <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+        <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl mb-8 md:mb-12">
+          <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 text-center">Follow Us</h3>
+          <div className="flex justify-center gap-4 md:gap-6">
+            <a href="#" className="w-12 h-12 md:w-14 md:h-14 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition">
+              <svg className="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
               </svg>
             </a>

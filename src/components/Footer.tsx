@@ -39,19 +39,19 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
-      <div className="container mx-auto px-6">
+    <footer className="bg-gray-900 text-white pt-12 md:pt-16 pb-6 md:pb-8">
+      <div className="container mx-auto px-4 md:px-6">
         {/* Main Footer Content */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+            <div className="flex items-center space-x-2 md:space-x-3 mb-4 md:mb-6">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg flex items-center justify-center">
                 <img src="/images/logo_without_text" alt="The Health Orbit" className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">The Health <span className="text-secondary-500">Orbit</span></h3>
-                <p className="text-sm text-gray-400">A Lifetime Global Ecosystem</p>
+                <h3 className="text-lg md:text-xl font-bold">The Health <span className="text-secondary-500">Orbit</span></h3>
+                <p className="text-xs md:text-sm text-gray-400">A Lifetime Global Ecosystem</p>
               </div>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6">

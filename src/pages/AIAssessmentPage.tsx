@@ -39,9 +39,9 @@ const AIAssessmentPage = () => {
     },
   ];
 
-  const handleAnswerChange = (value: string) => {
-    setAnswers({ ...answers, [questions[step - 1].id]: value });
-  };
+  // const handleAnswerChange = (value: string) => {
+  //   setAnswers({ ...answers, [questions[step - 1].id]: value });
+  // };
 
   const getAIHealthAssessment = async () => {
     setIsLoading(true);
@@ -195,19 +195,19 @@ ${age > 40 ? '- Thyroid Function Test\n- ECG/Cardiac Screening' : ''}
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 pt-24 pb-16">
-      <div className="container mx-auto px-6">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 pt-20 md:pt-24 pb-12 md:pb-16">
+      <div className="container mx-auto px-4 md:px-6">
         {!results ? (
           <>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-12"
+              className="text-center mb-8 md:mb-12"
             >
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6">
                 Know Your Health Before Symptoms Show
               </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
                 Get your personalized health risk score in 3 minutes. Free. No spam. Doctor-reviewed logic.
               </p>
             </motion.div>
@@ -216,7 +216,7 @@ ${age > 40 ? '- Thyroid Function Test\n- ECG/Cardiac Screening' : ''}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white rounded-3xl shadow-2xl p-8 md:p-12"
+                className="bg-white rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 lg:p-12"
               >
                 <div className="mb-8">
                   <div className="flex justify-between items-center mb-2">
@@ -239,11 +239,11 @@ ${age > 40 ? '- Thyroid Function Test\n- ECG/Cardiac Screening' : ''}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                 >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">
                     {questions[step - 1]?.question}
                   </h2>
                   
-                  <div className="space-y-5">
+                  <div className="space-y-4 md:space-y-5">
                     {questions[step - 1]?.fields?.map((field) => (
                       <div key={field.id}>
                         <label className="block text-gray-700 font-semibold mb-2">
@@ -296,7 +296,7 @@ ${age > 40 ? '- Thyroid Function Test\n- ECG/Cardiac Screening' : ''}
                   </div>
                 </motion.div>
 
-                <div className="flex gap-4 mt-8">
+                <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-6 md:mt-8">
                   {step > 1 && (
                     <motion.button
                       whileHover={{ scale: 1.05 }}
@@ -323,9 +323,9 @@ ${age > 40 ? '- Thyroid Function Test\n- ECG/Cardiac Screening' : ''}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="mt-12 grid md:grid-cols-3 gap-6 text-center"
+                className="mt-8 md:mt-12 grid sm:grid-cols-3 gap-4 md:gap-6 text-center"
               >
-                <div className="bg-white rounded-xl p-6 shadow-lg">
+                <div className="bg-white rounded-xl p-4 md:p-6 shadow-lg">
                   <div className="text-4xl mb-2">🤖</div>
                   <h3 className="font-bold text-gray-900">AI-Powered</h3>
                   <p className="text-gray-600 text-sm">Advanced algorithms</p>
@@ -349,9 +349,9 @@ ${age > 40 ? '- Thyroid Function Test\n- ECG/Cardiac Screening' : ''}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
-              <div className="flex items-center justify-between mb-8">
-                <h1 className="text-4xl font-bold text-gray-900">🎯 Your Health Assessment</h1>
+            <div className="bg-white rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 lg:p-12">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 md:mb-8">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">🎯 Your Health Assessment</h1>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -360,18 +360,18 @@ ${age > 40 ? '- Thyroid Function Test\n- ECG/Cardiac Screening' : ''}
                     setStep(1);
                     setAnswers({});
                   }}
-                  className="px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 font-semibold"
+                  className="px-4 md:px-6 py-2 md:py-3 rounded-full bg-gray-100 hover:bg-gray-200 font-semibold text-sm md:text-base"
                 >
                   ↻ Retake
                 </motion.button>
               </div>
 
-              <div className="prose prose-lg max-w-none">
+              <div className="prose prose-sm md:prose-lg max-w-none">
                 {results.split('\n').map((line, index) => {
                   if (line.startsWith('##')) {
-                    return <h2 key={index} className="text-2xl font-bold text-gray-900 mt-6 mb-4">{line.replace('##', '')}</h2>;
+                    return <h2 key={index} className="text-xl md:text-2xl font-bold text-gray-900 mt-4 md:mt-6 mb-3 md:mb-4">{line.replace('##', '')}</h2>;
                   } else if (line.startsWith('###')) {
-                    return <h3 key={index} className="text-xl font-bold text-gray-800 mt-4 mb-3">{line.replace('###', '')}</h3>;
+                    return <h3 key={index} className="text-lg md:text-xl font-bold text-gray-800 mt-3 md:mt-4 mb-2 md:mb-3">{line.replace('###', '')}</h3>;
                   } else if (line.startsWith('-')) {
                     return <li key={index} className="text-gray-700 ml-4">{line.replace('-', '')}</li>;
                   } else if (line.trim()) {
@@ -381,7 +381,7 @@ ${age > 40 ? '- Thyroid Function Test\n- ECG/Cardiac Screening' : ''}
                 })}
               </div>
 
-              <div className="mt-8 grid md:grid-cols-2 gap-4">
+              <div className="mt-6 md:mt-8 grid sm:grid-cols-2 gap-3 md:gap-4">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -405,10 +405,10 @@ ${age > 40 ? '- Thyroid Function Test\n- ECG/Cardiac Screening' : ''}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="mt-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl p-8 text-white text-center"
+              className="mt-6 md:mt-8 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-xl md:rounded-2xl p-6 md:p-8 text-white text-center"
             >
-              <h3 className="text-2xl font-bold mb-3">💡 Next Steps</h3>
-              <p className="text-lg opacity-90 mb-4">
+              <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3">💡 Next Steps</h3>
+              <p className="text-base md:text-lg opacity-90 mb-3 md:mb-4">
                 This AI assessment is for informational purposes. For personalized medical advice, consult our healthcare professionals.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

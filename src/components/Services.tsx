@@ -94,78 +94,78 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-br from-gray-50 to-white">
-      <div className="container mx-auto px-6">
+    <section id="services" className="py-12 md:py-20 bg-gradient-to-br from-gray-50 to-white">
+      <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Your Complete Healthcare Hub
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Six Pillars. One Platform. Total Care.
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-600 to-secondary-600 mx-auto mt-6"></div>
         </div>
 
         {/* Healthcare Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-20">
           {healthcareServices.map((service, index) => (
             <div 
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
+              className="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
             >
-              <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+              <div className={`w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform`}>
                 <div className="text-white">
                   {service.icon}
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{service.description}</p>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">{service.title}</h3>
+              <p className="text-gray-600 leading-relaxed text-sm md:text-base">{service.description}</p>
             </div>
           ))}
         </div>
 
         {/* Community Impact Section */}
-        <div className="bg-gradient-to-br from-primary-600 to-secondary-600 rounded-3xl p-12 text-white">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">Community Impact</h3>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+        <div className="bg-gradient-to-br from-primary-600 to-secondary-600 rounded-2xl md:rounded-3xl p-6 md:p-12 text-white">
+          <div className="text-center mb-8 md:mb-12">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Community Impact</h3>
+            <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
               Making a difference through outreach programs and community health initiatives
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {communityPrograms.map((program, index) => (
               <div 
                 key={index}
-                className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 hover:bg-white/20 transition"
+                className="bg-white/10 backdrop-blur-lg rounded-xl md:rounded-2xl p-4 md:p-6 hover:bg-white/20 transition"
               >
-                <div className="text-5xl mb-4">{program.icon}</div>
-                <h4 className="text-xl font-bold mb-3">{program.title}</h4>
-                <p className="text-white/90 text-sm leading-relaxed">{program.description}</p>
+                <div className="text-4xl md:text-5xl mb-3 md:mb-4">{program.icon}</div>
+                <h4 className="text-lg md:text-xl font-bold mb-2 md:mb-3">{program.title}</h4>
+                <p className="text-white/90 text-xs md:text-sm leading-relaxed">{program.description}</p>
               </div>
             ))}
           </div>
 
           {/* Stats */}
-          <div ref={statsRef} className="grid md:grid-cols-3 gap-8 mt-12 pt-12 border-t border-white/20">
+          <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mt-8 md:mt-12 pt-8 md:pt-12 border-t border-white/20">
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2">
+              <div className="text-3xl md:text-4xl font-bold mb-2">
                 {statsInView ? <CountUp end={100} duration={2.5} suffix="+" /> : '0'}
               </div>
-              <div className="text-white/90">Health Camps Organized</div>
+              <div className="text-white/90 text-sm md:text-base">Health Camps Organized</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2">
+              <div className="text-3xl md:text-4xl font-bold mb-2">
                 {statsInView ? <CountUp end={25} duration={2.5} suffix="K+" /> : '0'}
               </div>
-              <div className="text-white/90">Community Members Served</div>
+              <div className="text-white/90 text-sm md:text-base">Community Members Served</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2">
+              <div className="text-3xl md:text-4xl font-bold mb-2">
                 {statsInView ? <CountUp end={50} duration={2.5} suffix="+" /> : '0'}
               </div>
-              <div className="text-white/90">Partner Organizations</div>
+              <div className="text-white/90 text-sm md:text-base">Partner Organizations</div>
             </div>
           </div>
         </div>

@@ -4,6 +4,24 @@ import { Link } from 'react-router-dom';
 const RamadanWellnessPage = () => {
   const packages = [
     {
+      name: 'Ramadan Smart Care',
+      originalPrice: '6,760',
+      price: '5,000',
+      discountedPrice: '3,700',
+      color: 'from-orange-500 to-amber-600',
+      description: 'Economical wellness check with powerful insights',
+      subtitle: 'Best for: quick risk overview with essential monitoring.',
+      features: [
+        'Blood sugar monitoring',
+        'Cholesterol check',
+        'Liver marker analysis',
+        'Kidney function test',
+        'Urine test',
+        'Full body measurements',
+        'Digital medical records',
+      ],
+    },
+     {
       name: 'Ramadan Essential Care',
       originalPrice: '9,460',
       price: '7,000',
@@ -21,24 +39,6 @@ const RamadanWellnessPage = () => {
         'Blood pressure & oxygen monitoring',
         'Metabolic indicators',
         'Doctor consultation/teleconsultation for Roza guidance',
-      ],
-    },
-    {
-      name: 'Ramadan Smart Care',
-      originalPrice: '6,760',
-      price: '5,000',
-      discountedPrice: '3,700',
-      color: 'from-orange-500 to-amber-600',
-      description: 'Economical wellness check with powerful insights',
-      subtitle: 'Best for: quick risk overview with essential monitoring.',
-      features: [
-        'Blood sugar monitoring',
-        'Cholesterol check',
-        'Liver marker analysis',
-        'Kidney function test',
-        'Urine test',
-        'Full body measurements',
-        'Digital medical records',
       ],
     },
     {

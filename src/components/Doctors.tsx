@@ -91,41 +91,41 @@ const Doctors = () => {
   ];
 
   return (
-    <section id="doctors" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+    <section id="doctors" className="py-12 md:py-20 bg-white">
+      <div className="container mx-auto px-4 md:px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Join Our Network
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Empowering Healthcare Professionals to Make a Difference
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-600 to-secondary-600 mx-auto mt-6"></div>
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
           {benefits.map((benefit, index) => (
             <div 
               key={index}
-              className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all"
+              className="bg-gradient-to-br from-gray-50 to-white p-4 md:p-6 rounded-xl border border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all"
             >
-              <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 text-primary-600">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-3 md:mb-4 text-primary-600">
                 {benefit.icon}
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
-              <p className="text-gray-600 text-sm">{benefit.description}</p>
+              <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
+              <p className="text-gray-600 text-xs md:text-sm">{benefit.description}</p>
             </div>
           ))}
         </div>
 
         {/* Enrollment Form */}
         <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 md:p-12 shadow-xl">
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-gray-900 mb-3">Doctor Enrollment Form</h3>
-              <p className="text-gray-600">Fill out the form below to become part of our healthcare network</p>
+          <div className="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 shadow-xl">
+            <div className="text-center mb-6 md:mb-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 md:mb-3">Doctor Enrollment Form</h3>
+              <p className="text-gray-600 text-sm md:text-base">Fill out the form below to become part of our healthcare network</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">

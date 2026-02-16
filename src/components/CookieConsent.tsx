@@ -1,46 +1,120 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { sendToGoogleSheets, getCurrentTimestamp } from '../utils/googleSheets';
+
+interface GuestUserData {
+  email?: string;
+  phone?: string;
+  source: 'localStorage' | 'sessionStorage' | 'cookies' | 'new-session';
+  firstVisit: string;
+  lastVisit: string;
+  pageViews: number;
+}
 
 const CookieConsent = () => {
   const [showBanner, setShowBanner] = useState(false);
 
  
 
-  const retrieveUserData = () => {
+  const retrieveUserData = async () => {
     // Try to get user data from various storage methods
     const localStorageData = localStorage.getItem('userContactInfo');
     const sessionStorageData = sessionStorage.getItem('userContactInfo');
     const emailCookie = getCookie('userEmail');
     const phoneCookie = getCookie('userPhone');
 
-    let userData = null;
+    let userData: GuestUserData | null = null;
+    // let source: GuestUserData['source'] = 'new-session';
 
+    // Check localStorage first (persistent)
     if (localStorageData && localStorageData !== 'skipped') {
       try {
-        userData = JSON.parse(localStorageData);
-        console.log('Retrieved from localStorage:', userData);
+        const parsed = JSON.parse(localStorageData);
+        userData = {
+          email: parsed.email,
+          phone: parsed.phone,
+          source: 'localStorage',
+          firstVisit: parsed.firstVisit || getCurrentTimestamp(),
+          lastVisit: getCurrentTimestamp(),
+          pageViews: (parsed.pageViews || 0) + 1,
+        };
+        console.log('✅ Retrieved from localStorage:', userData);
       } catch (error) {
-        console.error('Error parsing localStorage data:', error);
+        console.error('❌ Error parsing localStorage data:', error);
       }
-    } else if (sessionStorageData && sessionStorageData !== 'skipped') {
+    } 
+    // Check sessionStorage (current session only)
+    else if (sessionStorageData && sessionStorageData !== 'skipped') {
       try {
-        userData = JSON.parse(sessionStorageData);
-        console.log('Retrieved from sessionStorage:', userData);
+        const parsed = JSON.parse(sessionStorageData);
+        userData = {
+          email: parsed.email,
+          phone: parsed.phone,
+          source: 'sessionStorage',
+          firstVisit: parsed.firstVisit || getCurrentTimestamp(),
+          lastVisit: getCurrentTimestamp(),
+          pageViews: (parsed.pageViews || 0) + 1,
+        };
+        console.log('✅ Retrieved from sessionStorage:', userData);
       } catch (error) {
-        console.error('Error parsing sessionStorage data:', error);
+        console.error('❌ Error parsing sessionStorage data:', error);
       }
-    } else if (emailCookie || phoneCookie) {
+    } 
+    // Check cookies (if set by other mechanisms)
+    else if (emailCookie || phoneCookie) {
       userData = {
-        email: emailCookie,
-        phone: phoneCookie,
+        email: emailCookie || undefined,
+        phone: phoneCookie || undefined,
+        source: 'cookies',
+        firstVisit: getCookie('firstVisit') || getCurrentTimestamp(),
+        lastVisit: getCurrentTimestamp(),
+        pageViews: parseInt(getCookie('pageViews') || '1'),
       };
-      console.log('Retrieved from cookies:', userData);
+      console.log('✅ Retrieved from cookies:', userData);
+    }
+    // New guest user - create initial tracking
+    else {
+      userData = {
+        source: 'new-session',
+        firstVisit: getCurrentTimestamp(),
+        lastVisit: getCurrentTimestamp(),
+        pageViews: 1,
+      };
+      console.log('🆕 New guest user session started');
     }
 
     if (userData) {
-      // Optional: Send to analytics or backend
+      // Track user session locally
       trackUserSession(userData);
+      
+      // Send guest user data to Google Sheets for analytics
+      await sendGuestDataToSheets(userData);
+    }
+  };
+
+  const sendGuestDataToSheets = async (userData: GuestUserData) => {
+    try {
+      // Create guest user tracking data for Google Sheets
+      const guestData = {
+        type: 'guest-user-tracking' as const,
+        timestamp: getCurrentTimestamp(),
+        email: userData.email || 'N/A',
+        phone: userData.phone || 'N/A',
+        source: userData.source,
+        firstVisit: userData.firstVisit,
+        lastVisit: userData.lastVisit,
+        pageViews: userData.pageViews.toString(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer || 'Direct',
+        currentPage: window.location.pathname,
+      };
+
+      // Send to Google Sheets
+      await sendToGoogleSheets(guestData as any);
+      console.log('📊 Guest user data sent to Google Sheets');
+    } catch (error) {
+      console.error('❌ Error sending guest data to Google Sheets:', error);
     }
   };
 
@@ -51,22 +125,40 @@ const CookieConsent = () => {
     return null;
   };
 
-  const trackUserSession = (userData: any) => {
-    // Store session tracking
+  const trackUserSession = (userData: GuestUserData) => {
+    // Update localStorage with latest visit data (persistent across sessions)
+    const updatedData = {
+      email: userData.email,
+      phone: userData.phone,
+      firstVisit: userData.firstVisit,
+      lastVisit: userData.lastVisit,
+      pageViews: userData.pageViews,
+    };
+    
+    localStorage.setItem('userContactInfo', JSON.stringify(updatedData));
+    
+    // Also store in sessionStorage for current session tracking
     sessionStorage.setItem('sessionTracking', JSON.stringify({
-      ...userData,
+      ...updatedData,
       sessionStart: new Date().toISOString(),
-      pageViews: parseInt(sessionStorage.getItem('pageViews') || '0') + 1,
+      currentPage: window.location.pathname,
+      source: userData.source,
     }));
 
-    // Optional: Send to backend analytics
-    // fetch('/api/track-session', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(userData),
-    // });
+    // Set cookies (expires in 365 days)
+    if (userData.email) {
+      document.cookie = `userEmail=${userData.email}; max-age=${365 * 24 * 60 * 60}; path=/`;
+    }
+    if (userData.phone) {
+      document.cookie = `userPhone=${userData.phone}; max-age=${365 * 24 * 60 * 60}; path=/`;
+    }
+    document.cookie = `firstVisit=${userData.firstVisit}; max-age=${365 * 24 * 60 * 60}; path=/`;
+    document.cookie = `pageViews=${userData.pageViews}; max-age=${365 * 24 * 60 * 60}; path=/`;
 
-    console.log('User session tracked silently');
+    console.log('💾 User session tracked:', {
+      storage: 'localStorage + sessionStorage + cookies',
+      data: updatedData,
+    });
   };
 
   const handleAccept = () => {

@@ -72,23 +72,23 @@ const WhatWeDo = () => {
   ];
 
   return (
-    <section id="what-we-do" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-6">
+    <section id="what-we-do" className="py-12 md:py-20 bg-gray-50">
+      <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Everything You Need in One Healthcare Ecosystem
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
             Comprehensive healthcare solutions designed to make quality care accessible to everyone
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {pillars.map((pillar, index) => (
             <motion.div
               key={pillar.title}

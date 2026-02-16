@@ -40,31 +40,31 @@ const FloatingActionButton = () => {
       color: 'from-green-500 to-emerald-500',
       action: () => window.location.href = 'tel:+922112345678',
     },
-    {
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      ),
-      label: 'Book Appointment',
-      color: 'from-pink-500 to-rose-500',
-      action: () => {
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      },
-    },
-    {
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
-      label: 'Emergency',
-      color: 'from-red-500 to-orange-500',
-      action: () => window.location.href = 'tel:1122',
-    },
+    // {
+    //   icon: (
+    //     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    //     </svg>
+    //   ),
+    //   label: 'Book Appointment',
+    //   color: 'from-pink-500 to-rose-500',
+    //   action: () => {
+    //     const contactSection = document.getElementById('contact');
+    //     if (contactSection) {
+    //       contactSection.scrollIntoView({ behavior: 'smooth' });
+    //     }
+    //   },
+    // },
+    // {
+    //   icon: (
+    //     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+    //     </svg>
+    //   ),
+    //   label: 'Emergency',
+    //   color: 'from-red-500 to-orange-500',
+    //   action: () => window.location.href = 'tel:1122',
+    // },
   ];
 
   return (

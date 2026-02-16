@@ -34,15 +34,15 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // const scrollToSection = (sectionId: string) => {
+  //   const element = document.getElementById(sectionId);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
 
   return (
-    <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 pb-20 overflow-hidden min-h-screen flex items-center">
+    <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 pb-12 md:pb-20 overflow-hidden min-h-[80vh] md:min-h-screen flex items-center">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Gradient Orbs with Parallax */}
@@ -103,8 +103,8 @@ const Hero = () => {
         ))}
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Content with Stagger Animation */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -137,7 +137,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-tight"
             >
               A Smarter Way to{' '}
               <motion.span
@@ -160,7 +160,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-xl text-gray-600 leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed"
             >
               Preventive Care • Healthcare Marketing • Health Plans • Telemedicine • AI Health Assessment • Ramadan Wellness Screening
             </motion.p>
@@ -184,7 +184,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(9, 109, 217, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.location.href = '/ai-assessment'}
-                className="relative group bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-8 py-4 rounded-full font-semibold overflow-hidden"
+                className="relative group bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold overflow-hidden text-sm md:text-base"
               >
                 <motion.span
                   className="absolute inset-0 bg-gradient-to-r from-secondary-600 to-primary-600"
@@ -211,7 +211,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(9, 109, 217, 0.2)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.location.href = '/telemedicine'}
-                className="relative group bg-white text-primary-600 px-8 py-4 rounded-full font-semibold border-2 border-primary-600 overflow-hidden"
+                className="relative group bg-white text-primary-600 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold border-2 border-primary-600 overflow-hidden text-sm md:text-base"
               >
                 <motion.span
                   className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary-600"
@@ -231,7 +231,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
-              className="grid grid-cols-3 gap-4 pt-8"
+              className="grid grid-cols-3 gap-2 md:gap-4 pt-6 md:pt-8"
             >
               {[
                 { end: 500, suffix: '+', label: 'Doctors', color: 'from-blue-500 to-cyan-500' },
@@ -246,13 +246,13 @@ const Hero = () => {
                   whileHover={{ scale: 1.05, y: -5 }}
                   className="relative group"
                 >
-                  <div className="bg-white/60 backdrop-blur-xl rounded-2xl p-4 shadow-lg border border-white/50 hover:shadow-2xl transition-all">
-                    <div className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  <div className="bg-white/60 backdrop-blur-xl rounded-xl md:rounded-2xl p-2 md:p-4 shadow-lg border border-white/50 hover:shadow-2xl transition-all">
+                    <div className={`text-xl md:text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
                       {stat.end ? (
                         inView ? <CountUp end={stat.end} duration={2.5} suffix={stat.suffix} /> : '0'
                       ) : stat.label}
                     </div>
-                    <div className="text-gray-600 text-xs mt-1">{stat.sublabel || stat.label}</div>
+                    <div className="text-gray-600 text-[10px] md:text-xs mt-1">{stat.sublabel || stat.label}</div>
                     <motion.div
                       className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.color} rounded-b-2xl`}
                       initial={{ scaleX: 0 }}
@@ -270,7 +270,7 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
+            className="relative hidden md:block"
             style={{
               transform: `perspective(1000px) rotateY(${mousePosition.x * 0.5}deg) rotateX(${-mousePosition.y * 0.5}deg)`,
               transition: 'transform 0.1s ease-out'
@@ -286,7 +286,7 @@ const Hero = () => {
                 <img 
                   src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800" 
                   alt="Healthcare Facility"
-                  className="w-full h-[600px] object-cover"
+                  className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 via-transparent to-transparent"></div>
                 
@@ -310,7 +310,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2 }}
               whileHover={{ scale: 1.05, rotate: 2 }}
-              className="absolute -bottom-6 -left-6 bg-white/80 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/50"
+              className="absolute -bottom-6 -left-6 bg-white/80 backdrop-blur-xl p-4 md:p-6 rounded-2xl shadow-2xl border border-white/50 hidden lg:block"
             >
               <div className="flex items-center space-x-4">
                 <motion.div
@@ -341,7 +341,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.4 }}
               whileHover={{ scale: 1.05, rotate: -2 }}
-              className="absolute -top-6 -right-6 bg-white/80 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/50"
+              className="absolute -top-6 -right-6 bg-white/80 backdrop-blur-xl p-4 md:p-6 rounded-2xl shadow-2xl border border-white/50 hidden lg:block"
             >
               <div className="flex items-center space-x-4">
                 <motion.div

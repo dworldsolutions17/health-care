@@ -2,21 +2,21 @@ import { motion } from 'framer-motion';
 
 const HealthPlansPage = () => {
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-16">
-      <div className="container mx-auto px-6">
+    <div className="min-h-screen bg-gray-50 pt-20 md:pt-24 pb-12 md:pb-16">
+      <div className="container mx-auto px-4 md:px-6">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6">
             Smart Health Plans for{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
               Modern Families & Organizations
             </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Access healthcare affordably while staying protected against unexpected costs.
           </p>
         </motion.div>
@@ -28,7 +28,7 @@ const HealthPlansPage = () => {
           transition={{ delay: 0.3 }}
           className="max-w-4xl mx-auto"
         >
-          <div className="bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-3xl p-16 text-center shadow-2xl relative overflow-hidden">
+          <div className="bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl md:rounded-3xl p-8 md:p-12 lg:p-16 text-center shadow-2xl relative overflow-hidden">
             {/* Animated Background */}
             <div className="absolute inset-0 opacity-20">
               <motion.div
@@ -57,7 +57,7 @@ const HealthPlansPage = () => {
                   scale: [1, 1.1, 1],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="text-8xl mb-8"
+                className="text-5xl md:text-6xl lg:text-8xl mb-6 md:mb-8"
               >
                 🚀
               </motion.div>
@@ -66,7 +66,7 @@ const HealthPlansPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="text-6xl md:text-7xl font-bold text-white mb-6"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6"
               >
                 COMING SOON!
               </motion.h2>
@@ -75,7 +75,7 @@ const HealthPlansPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
-                className="text-2xl text-white/90 mb-8"
+                className="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 md:mb-8"
               >
                 We're crafting something special for you
               </motion.p>

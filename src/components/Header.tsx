@@ -37,12 +37,16 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden xl:flex items-center gap-1">
-            <button 
-              onClick={() => scrollToSection('about')} 
+            <Link 
+              to="/"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('about');
+              }} 
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
             >
               About
-            </button>
+            </Link>
             <Link 
               to="/services" 
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
@@ -79,12 +83,16 @@ const Header = () => {
             >
               Partners
             </Link>
-            <button 
-              onClick={() => scrollToSection('contact')} 
+            <Link 
+              to="/"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('contact');
+              }} 
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
             >
               Contact
-            </button>
+            </Link>
             <Link 
               to="/ai-assessment" 
               className="ml-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all font-medium text-sm whitespace-nowrap"

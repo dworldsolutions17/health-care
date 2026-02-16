@@ -60,20 +60,20 @@ const TelemedicinePage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Hero Section */}
-      <section className="pt-32 pb-20">
-        <div className="container mx-auto px-6">
+      <section className="pt-24 md:pt-32 pb-12 md:pb-20">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6">
               Consult Trusted Doctors{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
                 From Anywhere
               </span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 mb-6 md:mb-8 leading-relaxed">
               Telemedicine removes distance from healthcare
             </p>
             <motion.button
@@ -96,8 +96,8 @@ const TelemedicinePage = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

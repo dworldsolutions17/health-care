@@ -61,12 +61,27 @@ export interface JoinNetworkData {
   description: string;
 }
 
+export interface GuestUserTrackingData {
+  type: 'guest-user-tracking';
+  timestamp: string;
+  email: string;
+  phone: string;
+  source: string;
+  firstVisit: string;
+  lastVisit: string;
+  pageViews: string;
+  userAgent: string;
+  referrer: string;
+  currentPage: string;
+}
+
 export type SheetData = 
   | ContactFormData 
   | AIAssessmentData 
   | PreventiveCheckupData 
   | TelemedicineBookingData 
-  | JoinNetworkData;
+  | JoinNetworkData
+  | GuestUserTrackingData;
 
 /**
  * Send data to Google Sheets via Google Apps Script Web App
@@ -166,6 +181,14 @@ function doPost(e) {
           sheet.appendRow(['Timestamp', 'Name', 'Partner Type', 'Email', 'Phone', 'City', 'Description']);
         }
         row = [data.timestamp, data.name, data.partnerType, data.email, data.phone, data.city, data.description];
+        break;
+        
+      case 'guest-user-tracking':
+        sheet = ss.getSheetByName('Guest User Tracking') || ss.insertSheet('Guest User Tracking');
+        if (sheet.getLastRow() === 0) {
+          sheet.appendRow(['Timestamp', 'Email', 'Phone', 'Source', 'First Visit', 'Last Visit', 'Page Views', 'User Agent', 'Referrer', 'Current Page']);
+        }
+        row = [data.timestamp, data.email, data.phone, data.source, data.firstVisit, data.lastVisit, data.pageViews, data.userAgent, data.referrer, data.currentPage];
         break;
         
       default:

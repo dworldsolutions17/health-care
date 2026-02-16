@@ -176,19 +176,19 @@ Available services: Health Plans, Preventive Care, Telemedicine, AI Health Asses
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="fixed bottom-24 right-8 w-[95%] max-w-md z-[61] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
-            style={{ height: '600px', maxHeight: '80vh' }}
+            className="fixed bottom-4 sm:bottom-24 right-2 sm:right-8 w-[96%] sm:w-[95%] max-w-md z-[61] bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+            style={{ height: 'calc(100vh - 100px)', maxHeight: '600px' }}
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white p-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white p-3 sm:p-4 flex items-center justify-between">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-full flex items-center justify-center">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-bold">Health Orbit AI</h3>
+                  <h3 className="font-bold text-sm sm:text-base">Health Orbit AI</h3>
                   <div className="flex items-center gap-1 text-xs">
                     <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                     <span>Online</span>
@@ -206,7 +206,7 @@ Available services: Health Plans, Preventive Care, Telemedicine, AI Health Asses
             </div>
 
             {/* Messages Container */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 bg-gray-50">
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
@@ -215,13 +215,13 @@ Available services: Health Plans, Preventive Care, Telemedicine, AI Health Asses
                   className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-2 ${
+                    className={`max-w-[85%] sm:max-w-[80%] rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 ${
                       message.sender === 'user'
                         ? 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-br-none'
                         : 'bg-white text-gray-800 rounded-bl-none shadow-md'
                     }`}
                   >
-                    <p className="text-sm whitespace-pre-line">{message.text}</p>
+                    <p className="text-xs sm:text-sm whitespace-pre-line">{message.text}</p>
                     <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
                       {message.timestamp.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                     </p>
@@ -236,7 +236,7 @@ Available services: Health Plans, Preventive Care, Telemedicine, AI Health Asses
                   animate={{ opacity: 1, y: 0 }}
                   className="flex justify-start"
                 >
-                  <div className="bg-white rounded-2xl rounded-bl-none px-4 py-3 shadow-md">
+                  <div className="bg-white rounded-xl sm:rounded-2xl rounded-bl-none px-3 sm:px-4 py-2 sm:py-3 shadow-md">
                     <div className="flex gap-1">
                       <motion.span
                         className="w-2 h-2 bg-gray-400 rounded-full"
@@ -260,13 +260,13 @@ Available services: Health Plans, Preventive Care, Telemedicine, AI Health Asses
             </div>
 
             {/* Quick Replies */}
-            <div className="px-4 py-2 bg-white border-t border-gray-200">
-              <div className="flex gap-2 overflow-x-auto pb-2">
+            <div className="px-3 sm:px-4 py-2 bg-white border-t border-gray-200">
+              <div className="flex gap-1.5 sm:gap-2 overflow-x-auto pb-2 scrollbar-hide">
                 {quickReplies.map((reply) => (
                   <button
                     key={reply}
                     onClick={() => handleSend(reply)}
-                    className="px-3 py-1.5 bg-gray-100 hover:bg-primary-100 text-gray-700 hover:text-primary-700 rounded-full text-xs font-medium whitespace-nowrap transition"
+                    className="px-2 sm:px-3 py-1 sm:py-1.5 bg-gray-100 hover:bg-primary-100 text-gray-700 hover:text-primary-700 rounded-full text-[10px] sm:text-xs font-medium whitespace-nowrap transition"
                   >
                     {reply}
                   </button>
@@ -275,7 +275,7 @@ Available services: Health Plans, Preventive Care, Telemedicine, AI Health Asses
             </div>
 
             {/* Input Area */}
-            <div className="p-4 bg-white border-t border-gray-200">
+            <div className="p-3 sm:p-4 bg-white border-t border-gray-200">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -288,12 +288,12 @@ Available services: Health Plans, Preventive Care, Telemedicine, AI Health Asses
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Type your message..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
+                  className="flex-1 px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-full focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
                 />
                 <button
                   type="submit"
                   disabled={!inputValue.trim()}
-                  className="w-10 h-10 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-full flex items-center justify-center hover:shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-full flex items-center justify-center hover:shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

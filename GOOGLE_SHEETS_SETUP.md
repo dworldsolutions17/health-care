@@ -12,6 +12,8 @@ Your website will automatically save the following data to Google Sheets:
 4. **Guest User Tracking** → "Guest User Tracking" sheet (automatically tracks visitors who accept cookies)
 5. **Preventive Checkup Bookings** → "Preventive Checkups" sheet
 6. **Telemedicine Bookings** → "Telemedicine Bookings" sheet
+7. **Customer Information Forms** → "Customer Information" sheet
+8. **Newsletter Subscriptions** → "Newsletter Subscriptions" sheet
 
 ---
 
@@ -41,6 +43,7 @@ function doPost(e) {
     // Route to appropriate sheet based on data type
     let sheet;
     let row = [];
+    let emailSent = false;
     
     switch(data.type) {
       case 'contact':
@@ -49,6 +52,10 @@ function doPost(e) {
           sheet.appendRow(['Timestamp', 'Name', 'Email', 'Phone', 'Subject', 'Message']);
         }
         row = [data.timestamp, data.name, data.email, data.phone, data.subject, data.message];
+        
+        // Send confirmation email
+        sendContactConfirmationEmail(data);
+        emailSent = true;
         break;
         
       case 'ai-assessment':
@@ -62,6 +69,12 @@ function doPost(e) {
           headerRange.setFontColor('#FFFFFF');
         }
         row = [data.timestamp, data.name, data.phone, data.email || 'N/A', data.age, data.gender, data.symptoms || 'None', data.lifestyle, data.results];
+        
+        // Send AI assessment email if email provided
+        if (data.email) {
+          sendAIAssessmentEmail(data);
+          emailSent = true;
+        }
         break;
         
       case 'preventive-checkup':
@@ -101,6 +114,30 @@ function doPost(e) {
         row = [data.timestamp, data.email, data.phone, data.source, data.firstVisit, data.lastVisit, data.pageViews, data.userAgent, data.referrer, data.currentPage];
         break;
         
+      case 'customer-information':
+        sheet = ss.getSheetByName('Customer Information') || ss.insertSheet('Customer Information');
+        if (sheet.getLastRow() === 0) {
+          sheet.appendRow(['Timestamp', 'Full Name', 'Date of Birth', 'Age', 'Gender', 'CNIC/Passport', 'Contact Number', 'Email', 'Product Category', 'Referred By']);
+        }
+        row = [data.timestamp, data.fullName, data.dateOfBirth, data.age, data.gender, data.cnicPassport, data.contactNumber, data.email, data.productCategory, data.referredBy];
+        
+        // Send customer registration email
+        sendCustomerInformationEmail(data);
+        emailSent = true;
+        break;
+        
+      case 'newsletter-subscription':
+        sheet = ss.getSheetByName('Newsletter Subscriptions') || ss.insertSheet('Newsletter Subscriptions');
+        if (sheet.getLastRow() === 0) {
+          sheet.appendRow(['Timestamp', 'Email', 'Source']);
+        }
+        row = [data.timestamp, data.email, data.source];
+        
+        // Send newsletter welcome email
+        sendNewsletterWelcomeEmail(data);
+        emailSent = true;
+        break;
+        
       default:
         return ContentService.createTextOutput(JSON.stringify({
           status: 'error',
@@ -112,7 +149,8 @@ function doPost(e) {
     
     return ContentService.createTextOutput(JSON.stringify({
       status: 'success',
-      message: 'Data saved successfully'
+      message: 'Data saved successfully',
+      emailSent: emailSent
     })).setMimeType(ContentService.MimeType.JSON);
     
   } catch (error) {
@@ -121,6 +159,249 @@ function doPost(e) {
       message: error.toString()
     })).setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+// ============================================================
+// EMAIL SENDING FUNCTIONS
+// ============================================================
+
+/**
+ * Send confirmation email for contact form submission
+ */
+function sendContactConfirmationEmail(data) {
+  try {
+    const subject = "Thank you for contacting Health Orbit";
+    const body = `
+Dear ${data.name},
+
+Thank you for reaching out to Health Orbit. We have received your message and will get back to you shortly.
+
+📋 Your Submission Details:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Subject: ${data.subject}
+Message: ${data.message}
+Submitted: ${data.timestamp}
+
+Our team typically responds within 24-48 hours. For urgent medical matters, please call our helpline: +92 21 1234 5678
+
+🏥 In the meantime, you can:
+• Explore our services: https://thehealthorbit.com/services
+• Book a free AI health assessment: https://thehealthorbit.com/ai-assessment
+• Learn about our health plans: https://thehealthorbit.com/health-plans
+
+Best regards,
+The Health Orbit Team
+A Lifecare Global Ecosystem
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This is an automated confirmation email. Please do not reply to this email.
+For assistance, contact us at support@healthorbit.com
+    `;
+    
+    MailApp.sendEmail({
+      to: data.email,
+      subject: subject,
+      body: body
+    });
+    
+    Logger.log('✅ Confirmation email sent to: ' + data.email);
+  } catch (error) {
+    Logger.log('❌ Error sending email: ' + error.toString());
+  }
+}
+
+/**
+ * Send AI assessment results email
+ */
+function sendAIAssessmentEmail(data) {
+  try {
+    const subject = "Your Health Assessment Results - Health Orbit";
+    const body = `
+Dear ${data.name},
+
+Thank you for completing your AI Health Assessment with Health Orbit.
+
+📊 Your Assessment Summary:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Age: ${data.age} years
+Gender: ${data.gender}
+Lifestyle: ${data.lifestyle}
+Symptoms: ${data.symptoms || 'None reported'}
+
+🔍 AI Analysis Results:
+${data.results}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ IMPORTANT DISCLAIMER:
+This is an AI-generated assessment and should NOT replace professional medical advice. Please consult with a qualified healthcare provider for proper diagnosis and treatment.
+
+📞 Next Steps:
+• Book a consultation with our doctors: https://thehealthorbit.com/telemedicine
+• Explore our preventive care packages: https://thehealthorbit.com/preventive-care
+• Call our helpline for immediate assistance: +92 21 1234 5678
+
+🏥 Why Choose Health Orbit?
+✓ 24/7 Telemedicine consultations
+✓ Expert doctors across specialties
+✓ Comprehensive health plans
+✓ Free home sample collection
+
+Assessment Date: ${data.timestamp}
+
+Stay healthy and safe!
+
+Best regards,
+The Health Orbit Medical Team
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This is an automated email. For questions, contact: support@healthorbit.com
+    `;
+    
+    MailApp.sendEmail({
+      to: data.email,
+      subject: subject,
+      body: body
+    });
+    
+    Logger.log('✅ AI assessment email sent to: ' + data.email);
+  } catch (error) {
+    Logger.log('❌ Error sending email: ' + error.toString());
+  }
+}
+
+/**
+ * Send newsletter welcome email
+ */
+function sendNewsletterWelcomeEmail(data) {
+  try {
+    const subject = "Welcome to Health Orbit Newsletter! 🎉";
+    const body = `
+Dear Subscriber,
+
+Welcome to the Health Orbit family! 🏥
+
+Thank you for subscribing to our newsletter. You're now part of a community committed to better health and wellness.
+
+📬 What to Expect:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Weekly health tips and wellness advice
+✓ Exclusive offers on health packages (up to 50% off)
+✓ Early access to new services and features
+✓ Expert medical insights and preventive care guides
+✓ Ramadan wellness programs and seasonal health tips
+
+🎁 WELCOME BONUS:
+As a thank you for subscribing, get 10% OFF on your first health package!
+Use code: WELCOME10
+
+🏥 Explore Our Services:
+• AI Health Assessment (FREE): https://thehealthorbit.com/ai-assessment
+• Telemedicine Consultations: https://thehealthorbit.com/telemedicine
+• Comprehensive Health Plans: https://thehealthorbit.com/health-plans
+• Preventive Care Packages: https://thehealthorbit.com/preventive-care
+
+📞 Need Assistance?
+Call: +92 21 1234 5678
+Email: support@healthorbit.com
+Website: https://thehealthorbit.com
+
+Subscribed: ${data.timestamp}
+
+Stay healthy, stay informed!
+
+Best regards,
+The Health Orbit Team
+A Lifecare Global Ecosystem
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+You can unsubscribe at any time by clicking here: [Unsubscribe Link]
+    `;
+    
+    MailApp.sendEmail({
+      to: data.email,
+      subject: subject,
+      body: body
+    });
+    
+    Logger.log('✅ Newsletter welcome email sent to: ' + data.email);
+  } catch (error) {
+    Logger.log('❌ Error sending email: ' + error.toString());
+  }
+}
+
+/**
+ * Send customer information form confirmation
+ */
+function sendCustomerInformationEmail(data) {
+  try {
+    const subject = "Registration Confirmed - Health Orbit";
+    const body = `
+Dear ${data.fullName},
+
+Your registration with Health Orbit has been successfully completed!
+
+📋 Registration Details:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Full Name: ${data.fullName}
+Product Category: ${data.productCategory}
+Registration Date: ${data.timestamp}
+${data.referredBy !== 'N/A' ? 'Referred By: ' + data.referredBy : ''}
+
+✅ What's Next?
+Our team will contact you within 24 hours to:
+• Complete your enrollment process
+• Explain your ${data.productCategory} package benefits
+• Schedule your initial health screening
+• Answer any questions you may have
+
+📞 Contact Information:
+Phone: ${data.contactNumber}
+Email: ${data.email}
+
+🎁 Your ${data.productCategory} Package Includes:
+✓ Comprehensive health screenings
+✓ 24/7 telemedicine access
+✓ Free home sample collection
+✓ Digital health records
+✓ Priority doctor consultations
+
+For immediate assistance, call: +92 21 1234 5678
+
+Welcome to better healthcare!
+
+Best regards,
+The Health Orbit Team
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This is an automated confirmation. For queries: support@healthorbit.com
+    `;
+    
+    MailApp.sendEmail({
+      to: data.email,
+      subject: subject,
+      body: body
+    });
+    
+    Logger.log('✅ Customer information email sent to: ' + data.email);
+  } catch (error) {
+    Logger.log('❌ Error sending email: ' + error.toString());
+  }
+}
+
+/**
+ * Simple function to authorize email permissions
+ * Run this ONCE to grant email sending permissions
+ */
+function authorizeEmailPermissions() {
+  // Send a simple test email to yourself
+  MailApp.sendEmail({
+    to: Session.getActiveUser().getEmail(),
+    subject: "✅ Email Authorization Successful - Health Orbit",
+    body: "Great! Your Google Apps Script now has permission to send emails.\n\nYour automated email system is ready to work!"
+  });
+  
+  Logger.log("✅ Authorization successful! Email sent to: " + Session.getActiveUser().getEmail());
 }
 
 function doGet() {
@@ -220,6 +501,14 @@ After the first submissions, your Google Sheet will automatically create these s
 ### 6. Telemedicine Bookings
 | Timestamp | Name | Email | Phone | Specialty | Preferred Time |
 |-----------|------|-------|-------|-----------|----------------|
+
+### 7. Customer Information
+| Timestamp | Full Name | Date of Birth | Age | Gender | CNIC/Passport | Contact Number | Email | Product Category | Referred By |
+|-----------|-----------|---------------|-----|--------|---------------|----------------|-------|------------------|-------------|
+
+### 8. Newsletter Subscriptions
+| Timestamp | Email | Source Page |
+|-----------|-------|-------------|
 
 ---
 

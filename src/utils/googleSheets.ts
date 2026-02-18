@@ -75,13 +75,36 @@ export interface GuestUserTrackingData {
   currentPage: string;
 }
 
+export interface CustomerInformationData {
+  type: 'customer-information';
+  timestamp: string;
+  fullName: string;
+  dateOfBirth: string;
+  age: string;
+  gender: string;
+  cnicPassport: string;
+  contactNumber: string;
+  email: string;
+  productCategory: string;
+  referredBy: string;
+}
+
+export interface NewsletterSubscriptionData {
+  type: 'newsletter-subscription';
+  timestamp: string;
+  email: string;
+  source: string;
+}
+
 export type SheetData = 
   | ContactFormData 
   | AIAssessmentData 
   | PreventiveCheckupData 
   | TelemedicineBookingData 
   | JoinNetworkData
-  | GuestUserTrackingData;
+  | GuestUserTrackingData
+  | CustomerInformationData
+  | NewsletterSubscriptionData;
 
 /**
  * Send data to Google Sheets via Google Apps Script Web App
@@ -127,94 +150,3 @@ export const getCurrentTimestamp = (): string => {
     second: '2-digit',
   });
 };
-
-// ============================================================
-// GOOGLE APPS SCRIPT CODE TO PASTE IN GOOGLE APPS SCRIPT EDITOR
-// ============================================================
-/*
-
-function doPost(e) {
-  try {
-    const data = JSON.parse(e.postData.contents);
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-    
-    // Route to appropriate sheet based on data type
-    let sheet;
-    let row = [];
-    
-    switch(data.type) {
-      case 'contact':
-        sheet = ss.getSheetByName('Contact Forms') || ss.insertSheet('Contact Forms');
-        if (sheet.getLastRow() === 0) {
-          sheet.appendRow(['Timestamp', 'Name', 'Email', 'Phone', 'Subject', 'Message']);
-        }
-        row = [data.timestamp, data.name, data.email, data.phone, data.subject, data.message];
-        break;
-        
-      case 'ai-assessment':
-        sheet = ss.getSheetByName('AI Assessments') || ss.insertSheet('AI Assessments');
-        if (sheet.getLastRow() === 0) {
-          sheet.appendRow(['Timestamp', 'Age', 'Gender', 'Symptoms', 'Lifestyle', 'Results']);
-        }
-        row = [data.timestamp, data.age, data.gender, data.symptoms, data.lifestyle, data.results];
-        break;
-        
-      case 'preventive-checkup':
-        sheet = ss.getSheetByName('Preventive Checkups') || ss.insertSheet('Preventive Checkups');
-        if (sheet.getLastRow() === 0) {
-          sheet.appendRow(['Timestamp', 'Name', 'Email', 'Phone', 'Preferred Date']);
-        }
-        row = [data.timestamp, data.name, data.email, data.phone, data.preferredDate || 'N/A'];
-        break;
-        
-      case 'telemedicine-booking':
-        sheet = ss.getSheetByName('Telemedicine Bookings') || ss.insertSheet('Telemedicine Bookings');
-        if (sheet.getLastRow() === 0) {
-          sheet.appendRow(['Timestamp', 'Name', 'Email', 'Phone', 'Specialty', 'Preferred Time']);
-        }
-        row = [data.timestamp, data.name, data.email, data.phone, data.specialty || 'N/A', data.preferredTime || 'N/A'];
-        break;
-        
-      case 'join-network':
-        sheet = ss.getSheetByName('Network Applications') || ss.insertSheet('Network Applications');
-        if (sheet.getLastRow() === 0) {
-          sheet.appendRow(['Timestamp', 'Name', 'Partner Type', 'Email', 'Phone', 'City', 'Description']);
-        }
-        row = [data.timestamp, data.name, data.partnerType, data.email, data.phone, data.city, data.description];
-        break;
-        
-      case 'guest-user-tracking':
-        sheet = ss.getSheetByName('Guest User Tracking') || ss.insertSheet('Guest User Tracking');
-        if (sheet.getLastRow() === 0) {
-          sheet.appendRow(['Timestamp', 'Email', 'Phone', 'Source', 'First Visit', 'Last Visit', 'Page Views', 'User Agent', 'Referrer', 'Current Page']);
-        }
-        row = [data.timestamp, data.email, data.phone, data.source, data.firstVisit, data.lastVisit, data.pageViews, data.userAgent, data.referrer, data.currentPage];
-        break;
-        
-      default:
-        return ContentService.createTextOutput(JSON.stringify({
-          status: 'error',
-          message: 'Unknown data type'
-        })).setMimeType(ContentService.MimeType.JSON);
-    }
-    
-    sheet.appendRow(row);
-    
-    return ContentService.createTextOutput(JSON.stringify({
-      status: 'success',
-      message: 'Data saved successfully'
-    })).setMimeType(ContentService.MimeType.JSON);
-    
-  } catch (error) {
-    return ContentService.createTextOutput(JSON.stringify({
-      status: 'error',
-      message: error.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
-  }
-}
-
-function doGet() {
-  return ContentService.createTextOutput('Google Sheets Integration Active');
-}
-
-*/

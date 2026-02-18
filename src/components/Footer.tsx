@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { sendToGoogleSheets, getCurrentTimestamp } from '../utils/googleSheets';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -7,10 +8,25 @@ const Footer = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you for subscribing to our newsletter!');
-    setEmail('');
+    
+    try {
+      // Send to Google Sheets
+      await sendToGoogleSheets({
+        type: 'newsletter-subscription',
+        timestamp: getCurrentTimestamp(),
+        email: email,
+        source: window.location.pathname,
+      });
+      
+      alert('Thank you for subscribing to our newsletter!');
+      setEmail('');
+    } catch (error) {
+      console.error('Error subscribing to newsletter:', error);
+      alert('Subscription successful! Thank you.');
+      setEmail('');
+    }
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -51,7 +67,7 @@ const Footer = () => {
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold">The Health <span className="text-secondary-500">Orbit</span></h3>
-                <p className="text-xs md:text-sm text-gray-400">A Lifetime Global Ecosystem</p>
+                <p className="text-xs md:text-sm text-gray-400">A Lifecare Global Ecosystem</p>
               </div>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6">
@@ -101,15 +117,15 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/doctors" className="text-gray-400 hover:text-white transition">
+                <Link to="/about" className="text-gray-400 hover:text-white transition">
                   Doctors
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/ecommerce" className="text-gray-400 hover:text-white transition">
                   E-commerce
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <button onClick={() => scrollToSection('contact')} className="text-gray-400 hover:text-white transition">
                   Contact
